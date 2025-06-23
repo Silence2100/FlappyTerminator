@@ -4,6 +4,7 @@ using UnityEngine.Pool;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private GameEvents _events;
     [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private ScoreCounter _scoreCounter;
     [SerializeField] private float _spawnInterval = 3f;
@@ -33,14 +34,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnEnemyDied += OnEnemyDied;
-        GameEvents.OnEnemyExited += ReleaseEnemy;
+        _events.EnemyDied += OnEnemyDied;
+        _events.EnemyExited += ReleaseEnemy;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnEnemyDied -= OnEnemyDied;
-        GameEvents.OnEnemyExited -= ReleaseEnemy;
+        _events.EnemyDied -= OnEnemyDied;
+        _events.EnemyExited -= ReleaseEnemy;
     }
 
     public void ReleaseEnemy(Enemy enemy)
@@ -57,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
     {
         var enemy = Instantiate(_enemyPrefab);
         enemy.gameObject.SetActive(false);
+        enemy.Init(_events);
 
         return enemy;
     }

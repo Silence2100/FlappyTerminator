@@ -10,13 +10,19 @@ public class Player : MonoBehaviour
 
     private Vector3 _startPosition;
 
-    private void Awake() => _startPosition = transform.position;
+    private void Awake() => 
+        _startPosition = transform.position;
 
-    public void RaiseJump() => JumpRequested?.Invoke();
-    public void RaiseShoot() => ShootRequested?.Invoke();
-    public void RaiseDeath() => Died?.Invoke();
+    public void RequestJump() => 
+        JumpRequested?.Invoke();
 
-    public void ResetPlayer()
+    public void RequestShoot() => 
+        ShootRequested?.Invoke();
+
+    public void NotifyDeath() => 
+        Died?.Invoke();
+
+    public void Reset()
     {
         transform.position = _startPosition;
         transform.rotation = Quaternion.identity;

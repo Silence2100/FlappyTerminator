@@ -1,19 +1,24 @@
+using System;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
+    [SerializeField] private KeyCode _shootKey = KeyCode.F;
+    
+    public event Action JumpPerformed;
+    public event Action ShootPerformed;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(_jumpKey))
         {
-            _player.RaiseJump();
+            JumpPerformed?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(_shootKey))
         {
-            _player.RaiseShoot();
+            ShootPerformed?.Invoke();
         }
     }
 }

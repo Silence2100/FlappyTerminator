@@ -11,9 +11,11 @@ public class BulletLifetime : MonoBehaviour
 
     private Coroutine _coroutine;
 
-    private void OnEnable() => _coroutine = StartCoroutine(Lifetime());
+    private void OnEnable() => 
+        _coroutine = StartCoroutine(Lifetime());
 
-    private void OnDisable() => StopCoroutine(_coroutine);
+    private void OnDisable() => 
+        StopCoroutine(_coroutine);
 
     private IEnumerator Lifetime()
     {

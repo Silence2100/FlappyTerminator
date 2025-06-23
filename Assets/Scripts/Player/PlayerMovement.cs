@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private PlayerInput _input;
     [SerializeField] private float _horizontalSpeed = 2f;
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private float _rotationSpeed = 2f;
@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.JumpRequested += OnJump;
+        _input.JumpPerformed += OnJump;
     }
 
     private void OnDisable()
     {
-        _player.JumpRequested -= OnJump;
+        _input.JumpPerformed -= OnJump;
     }
 
     private void Update()

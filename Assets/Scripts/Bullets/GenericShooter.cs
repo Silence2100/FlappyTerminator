@@ -24,11 +24,14 @@ public abstract class GenericShooter<TBullet> : MonoBehaviour where TBullet : Bu
         );
     }
 
-    private void OnGet(TBullet bullet) => bullet.gameObject.SetActive(true);
+    private void OnGet(TBullet bullet) => 
+        bullet.gameObject.SetActive(true);
 
-    private void OnRelease(TBullet bullet) => bullet.gameObject.SetActive(false);
+    private void OnRelease(TBullet bullet) => 
+        bullet.gameObject.SetActive(false);
 
-    private void Destroy(TBullet bullet) => Destroy(bullet.gameObject);
+    private void Destroy(TBullet bullet) => 
+        Destroy(bullet.gameObject);
 
     protected void Shoot(Vector2 direction)
     {

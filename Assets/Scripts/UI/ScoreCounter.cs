@@ -3,29 +3,31 @@ using UnityEngine;
 
 public class ScoreCounter : MonoBehaviour
 {
-    private int _score;
+    [SerializeField] private GameEvents _events;
 
-    public event Action<int> ScoreChanged;
+    private int _value;
+
+    public event Action<int> ValueChanged;
 
     private void Start()
     {
-        _score = 0;
-        ScoreChanged?.Invoke(_score);
+        _value = 0;
+        ValueChanged?.Invoke(_value);
     }
 
     private void OnEnable()
     {
-        GameEvents.OnEnemyDied += HandleEnemyDied;
+        _events.EnemyDied += HandleEnemyDied;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnEnemyDied -= HandleEnemyDied;
+        _events.EnemyDied -= HandleEnemyDied;
     }
 
     public void HandleEnemyDied(Enemy enemy)
     {
-        _score++;
-        ScoreChanged?.Invoke(_score);
+        _value++;
+        ValueChanged?.Invoke(_value);
     }
 }

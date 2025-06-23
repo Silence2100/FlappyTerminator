@@ -3,6 +3,8 @@
 [RequireComponent(typeof(Collider2D))]
 public class LeftBoundary : MonoBehaviour
 {
+    [SerializeField] private GameEvents _events;
+
     private void OnValidate()
     {
         GetComponent<Collider2D>().isTrigger = true;
@@ -12,7 +14,7 @@ public class LeftBoundary : MonoBehaviour
     {
         if (other.TryGetComponent<Enemy>(out var enemy))
         {
-            GameEvents.EnemyExited(enemy);
+            _events.RaiseEnemyExited(enemy);
         }
     }
 }

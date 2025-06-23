@@ -8,7 +8,7 @@ public class BulletCollisionHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<PlayerHealth>(out _) || other.TryGetComponent<Enemy>(out _))
+        if (other.TryGetComponent<PlayerCollisionHandler>(out _) || other.TryGetComponent<Enemy>(out _))
         {
             OnHit?.Invoke();
         }

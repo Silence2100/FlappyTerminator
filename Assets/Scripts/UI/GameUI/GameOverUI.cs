@@ -8,17 +8,18 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Button _restartButton;
     [SerializeField] private GameSession _gameSession;
 
-    private void Awake() => _gameOverPanel.SetActive(false);
+    private void Awake() => 
+        _gameOverPanel.SetActive(false);
 
     private void OnEnable()
     {
-        GameSession.OnGameOver += Show;
+        _gameSession.OnGameOver += Show;
         _restartButton.onClick.AddListener(Restart);
     }
 
     private void OnDisable()
     {
-        GameSession.OnGameOver -= Show;
+        _gameSession.OnGameOver -= Show;
         _restartButton.onClick.RemoveListener(Restart);
     }
 

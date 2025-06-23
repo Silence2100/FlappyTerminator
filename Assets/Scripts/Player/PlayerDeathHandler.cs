@@ -7,8 +7,11 @@ public class PlayerDeathHandler : MonoBehaviour
     [SerializeField] private PlayerShooting _shooting;
     [SerializeField] private GameSession _gameSession;
 
-    private void OnEnable()   => _player.Died += HandleDeath;
-    private void OnDisable () => _player.Died -= HandleDeath;
+    private void OnEnable()   => 
+        _player.Died += HandleDeath;
+
+    private void OnDisable () => 
+        _player.Died -= HandleDeath;
 
     private void HandleDeath()
     {

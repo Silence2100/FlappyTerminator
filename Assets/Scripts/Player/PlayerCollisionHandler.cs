@@ -1,14 +1,18 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class PlayerHealth : MonoBehaviour
+[RequireComponent(typeof(Collider2D), typeof(Player))]
+public class PlayerCollisionHandler : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    private Player _player;
+
+    private void Awake()
+    {
+        _player = GetComponent<Player>();
+    }
 
     private void OnValidate()
     {
-        var collider = GetComponent<Collider2D>();
-        collider.isTrigger = true;
+        GetComponent<Collider2D>().isTrigger = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
             other.TryGetComponent<Enemy>(out _) ||
             other.TryGetComponent<BoundaryMarker>(out _))
         {
-            _player.RaiseDeath();
+            _player.NotifyDeath();
         }
     }
 }

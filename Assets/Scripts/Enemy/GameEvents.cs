@@ -1,10 +1,14 @@
 ﻿using System;
+using UnityEngine;
 
-public static class GameEvents
+public class GameEvents : MonoBehaviour
 {
-    public static event Action<Enemy> OnEnemyDied;
-    public static event Action<Enemy> OnEnemyExited;
+    public event Action<Enemy> EnemyDied;
+    public event Action<Enemy> EnemyExited;
 
-    public static void EnemyDied(Enemy enemy) => OnEnemyDied?.Invoke(enemy);
-    public static void EnemyExited(Enemy enemy) => OnEnemyExited?.Invoke(enemy);
+    public void RaiseEnemyDied(Enemy enemy) => 
+        EnemyDied?.Invoke(enemy);
+
+    public void RaiseEnemyExited(Enemy enemy) => 
+        EnemyExited?.Invoke(enemy);
 }

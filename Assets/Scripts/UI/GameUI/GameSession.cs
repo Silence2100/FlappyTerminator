@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-    public static event Action OnGameStart;
-    public static event Action OnGameOver;
+    public event Action OnGameStart;
+    public event Action OnGameOver;
 
-    private void Awake() => Time.timeScale = 0f;
+    private void Awake() => 
+        Time.timeScale = 0f;
 
     public void StartGame()
     {

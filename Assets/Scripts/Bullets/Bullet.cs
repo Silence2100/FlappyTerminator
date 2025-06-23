@@ -8,7 +8,8 @@ public class Bullet : MonoBehaviour
 
     public event Action<Bullet> ReturnedToPool;
 
-    private void Awake() => _rigidbody = GetComponent<Rigidbody2D>();
+    private void Awake() => 
+        _rigidbody = GetComponent<Rigidbody2D>();
 
     public void Initialize(BulletLifetime life, BulletCollisionHandler collision)
     {
